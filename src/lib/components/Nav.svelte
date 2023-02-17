@@ -1,15 +1,19 @@
-<nav>
-	<a href="/">Home</a>
-	<a href="/about">About</a>
-	<a href="/signup">Signup</a>
-</nav>
+<script>
+	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
+	import { page } from '$app/stores';
 
-<style>
-	nav {
-		display: flex;
-		justify-content: right;
-	}
-	nav > a:not(:first-child) {
-		margin-left: 1rem;
-	}
-</style>
+	let current = $page.url.pathname;
+</script>
+
+<Navbar navClass="" let:hidden let:toggle>
+	<NavBrand href="/">
+		<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"> rAuto </span>
+	</NavBrand>
+	<NavHamburger on:click={toggle} />
+	<NavUl {hidden}>
+		<NavLi href="#about">About</NavLi>
+		<NavLi href="#features">Features</NavLi>
+		<NavLi href="#pricing">Pricing</NavLi>
+		<NavLi href="#contact">Contact</NavLi>
+	</NavUl>
+</Navbar>
