@@ -5,7 +5,7 @@
 	let current = $page.url.pathname;
 </script>
 
-<Navbar navClass="" let:hidden let:toggle>
+<Navbar navClass="m-4 sm:m-0" let:hidden let:toggle>
 	<NavBrand href="/">
 		<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"> rAuto </span>
 	</NavBrand>
