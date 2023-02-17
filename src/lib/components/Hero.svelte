@@ -1,17 +1,17 @@
 <script>
 	import { Heading, P, Button } from 'flowbite-svelte';
+	import Benefits from './Benefits.svelte';
 </script>
 
-<div class="text-center mx-auto my-auto w-full md:w-[60%] h-1/3">
+<div class="text-center mx-auto my-52 w-full md:w-[60%] h-1/3">
 	<Heading tag="h1" class="mb-4" customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl"
-		>Effortlessly boost website traffic through Reddit automation</Heading
+		>Effortlessly boost <Benefits /> <br />with Reddit automation</Heading
 	>
 	<P class="text-center mb-6 text-lg lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
-		>Drive traffic to your website effortlessly by leveraging automation to share to multiple
-		subreddits at the same time</P
+		>Grow your brand by leveraging automation to share to multiple subreddits, simultaneously.</P
 	>
-	<Button href="/features"
-		>Learn more
+	<Button href="#features"
+		>Try it for free
 		<svg
 			class="ml-2 -mr-1 w-5 h-5"
 			fill="currentColor"
