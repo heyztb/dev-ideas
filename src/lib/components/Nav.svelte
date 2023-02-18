@@ -1,8 +1,5 @@
 <script>
 	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
-	import { page } from '$app/stores';
-
-	let current = $page.url.pathname;
 </script>
 
 <Navbar navClass="m-4 sm:m-0" let:hidden let:toggle>
