@@ -1,18 +1,35 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
+	import { quadInOut } from 'svelte/easing';
+
 	let benefits = ['traffic', 'sales', 'engagement', 'visibility', 'influence'];
-	// default the benefit shown to the first in our list
 	let currentBenefit: string = benefits[0];
 
-	function getBenefit() {
+	const switchBenefit = () => {
 		let benefit = benefits.shift()!;
 		currentBenefit = benefit;
 		benefits.push(benefit);
-	}
+	};
 
-	setInterval(getBenefit, 3000);
+	let switchBenefitInterval: NodeJS.Timer;
+
+	onMount(() => {
+		switchBenefitInterval = setInterval(switchBenefit, 3000);
+	});
 </script>
 
-<span>{currentBenefit}</span>
+{#key currentBenefit}
+	<span
+		in:fly={{
+			y: -100,
+			duration: 600,
+			easing: quadInOut
+		}}
+	>
+		{currentBenefit}
+	</span>
+{/key}
 
 <style>
 	span {
