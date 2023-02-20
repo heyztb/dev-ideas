@@ -29,15 +29,27 @@
 					Get involved
 				</h2>
 				<FooterLinkGroup>
-					<FooterLink liClass="mb-4" href="/">Roadmap</FooterLink>
+					<FooterLink
+						liClass="mb-4"
+						href="https://heyztb.notion.site/783b293741734127a9b3fb0282419dd1?v=45ba1ff976a34bd18ad00182d36406af"
+						>Roadmap</FooterLink
+					>
 					<FooterLink liClass="mb-4" href="https://github.com/heyztb/rauto">GitHub</FooterLink>
 				</FooterLinkGroup>
 			</div>
 			<div>
 				<h2 class="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">Legal</h2>
 				<FooterLinkGroup>
-					<FooterLink liClass="mb-4" href="/">Privacy Policy</FooterLink>
-					<FooterLink liClass="mb-4" href="/">Terms & Conditions</FooterLink>
+					<FooterLink
+						liClass="mb-4"
+						href="https://heyztb.notion.site/User-Agreement-95f9738800a6459b9056ae1ac5f17a04"
+						>User Agreement</FooterLink
+					>
+					<FooterLink
+						liClass="mb-4"
+						href="https://heyztb.notion.site/Privacy-Policy-b3a908e2301e436a975bb07f57a45617"
+						>Privacy Policy</FooterLink
+					>
 				</FooterLinkGroup>
 			</div>
 		</div>
