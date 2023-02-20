@@ -18,22 +18,14 @@
 			method="post"
 			id="mc-embedded-subscribe-form"
 			name="mc-embedded-subscribe-form"
-			class="validate"
 			target="_self"
 		>
 			<div id="mc_embed_signup_scroll">
 				<Heading tag="h4" class="mb-2"
 					>Drop your email below to get notified when we launch!</Heading
 				>
-				<div class="mc-field-group space-y-2">
-					<Input
-						type="email"
-						placeholder="john@appleseed.org"
-						name="EMAIL"
-						class="required email"
-						id="mce-EMAIL"
-						required
-					>
+				<div class="mc-field-group space-y-2 mx-auto w-2/3">
+					<Input type="email" placeholder="john@appleseed.org" name="EMAIL" id="mce-EMAIL" required>
 						<svg
 							slot="right"
 							aria-hidden="true"
@@ -62,8 +54,10 @@
 							value="Subscribe"
 							name="subscribe"
 							id="mc-embedded-subscribe"
-							class="button">Subscribe</Button
+							class="w-32 text-g font-semibold"
 						>
+							Subscribe
+						</Button>
 					</div>
 				</div>
 			</div>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
-	import { fly } from 'svelte/transition';
-	import { quadInOut } from 'svelte/easing';
+	import { fly, slide } from 'svelte/transition';
+	import { quadIn, quadInOut } from 'svelte/easing';
 
 	let benefits = ['traffic', 'sales', 'engagement', 'visibility', 'influence'];
 	let currentBenefit: string = benefits[0];
@@ -19,17 +19,20 @@
 	});
 
 	onDestroy(() => {
-		if (switchBenefitInterval) { clearInterval(switchBenefitInterval) }
-	})
+		if (switchBenefitInterval) {
+			clearInterval(switchBenefitInterval);
+		}
+	});
 </script>
 
 {#key currentBenefit}
 	<span
 		in:fly={{
-			y: -100,
-			duration: 600,
+			y: 1000,
+			duration: 800,
 			easing: quadInOut
 		}}
+		class="h-full w-auto"
 	>
 		{currentBenefit}
 	</span>
