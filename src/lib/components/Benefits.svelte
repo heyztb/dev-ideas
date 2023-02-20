@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { quadInOut } from 'svelte/easing';
 
@@ -17,6 +17,10 @@
 	onMount(() => {
 		switchBenefitInterval = setInterval(switchBenefit, 3000);
 	});
+
+	onDestroy(() => {
+		if (switchBenefitInterval) { clearInterval(switchBenefitInterval) }
+	})
 </script>
 
 {#key currentBenefit}

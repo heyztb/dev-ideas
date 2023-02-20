@@ -1,5 +1,5 @@
 <script>
-	import { Heading, P, Button } from 'flowbite-svelte';
+	import { Heading, P, Input, Label, Button } from 'flowbite-svelte';
 	import Benefits from './Benefits.svelte';
 </script>
 
@@ -10,15 +10,65 @@
 	<P class="text-center mb-6 text-lg lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
 		>Grow your brand by leveraging automation to share to multiple subreddits, simultaneously.</P
 	>
-	<button
-		data-tf-popup="KEmpKAgE"
-		data-tf-opacity="100"
-		data-tf-size="100"
-		data-tf-iframe-props="title=rAuto Early Signup"
-		data-tf-transitive-search-params
-		data-tf-medium="snippet"
-		style="all:unset;font-family:Helvetica,Arial,sans-serif;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#1a56db;color:#fff;font-size:20px;border-radius:25px;padding:0 33px;font-weight:bold;height:50px;cursor:pointer;line-height:50px;text-align:center;margin:0;text-decoration:none;"
-		>Sign up</button
-	>
-	<script src="//embed.typeform.com/next/embed.js"></script>
+
+	<!-- Begin Mailchimp Signup Form -->
+	<div id="mc_embed_signup">
+		<form
+			action="https://dev.us9.list-manage.com/subscribe/post?u=54ff2206894fd2311e306bdd1&amp;id=e0ebc63580&amp;f_id=00e33ae1f0"
+			method="post"
+			id="mc-embedded-subscribe-form"
+			name="mc-embedded-subscribe-form"
+			class="validate"
+			target="_self"
+		>
+			<div id="mc_embed_signup_scroll">
+				<Heading tag="h4" class="mb-2"
+					>Drop your email below to get notified when we launch!</Heading
+				>
+				<div class="mc-field-group space-y-2">
+					<Input
+						type="email"
+						placeholder="john@appleseed.org"
+						name="EMAIL"
+						class="required email"
+						id="mce-EMAIL"
+						required
+					>
+						<svg
+							slot="right"
+							aria-hidden="true"
+							class="w-5 h-5"
+							fill="currentColor"
+							viewBox="0 0 20 20"
+							xmlns="http://www.w3.org/2000/svg"
+							><path
+								d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+							/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg
+						>
+					</Input>
+				</div>
+				<div id="mce-responses" class="clear foot">
+					<div class="response" id="mce-error-response" style="display:none" />
+					<div class="response" id="mce-success-response" style="display:none" />
+				</div>
+				<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+				<div style="position: absolute; left: -5000px;" aria-hidden="true">
+					<input type="text" name="b_54ff2206894fd2311e306bdd1_e0ebc63580" tabindex="-1" value="" />
+				</div>
+				<div class="optionalParent">
+					<div class="clear foot my-4">
+						<Button
+							type="submit"
+							value="Subscribe"
+							name="subscribe"
+							id="mc-embedded-subscribe"
+							class="button">Subscribe</Button
+						>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<!--End mc_embed_signup-->
 </div>
