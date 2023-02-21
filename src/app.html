@@ -5,37 +5,16 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		%sveltekit.head%
-		<!-- Matomo -->
-		<script>
-			var _paq = (window._paq = window._paq || []);
-			/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-			_paq.push(['setReferrerUrl', document.referrer]);
-			_paq.push(['trackPageView']);
-			_paq.push(['enableLinkTracking']);
-
-			window.addEventListener('hashchange', function () {
-				_paq.push(['setCustomUrl', '/' + window.location.hash.substr(1)]);
-				_paq.push(['setReferrerUrl', document.referrer]);
-				_paq.push(['setDocumentTitle', document.title]);
-				_paq.push(['trackPageView']);
-			});
-
-			(function () {
-				var u = 'https://rauto.matomo.cloud/';
-				_paq.push(['setTrackerUrl', u + 'matomo.php']);
-				_paq.push(['setSiteId', '1']);
-				var d = document,
-					g = d.createElement('script'),
-					s = d.getElementsByTagName('script')[0];
-				g.async = true;
-				g.src = '//cdn.matomo.cloud/rauto.matomo.cloud/matomo.js';
-				s.parentNode.insertBefore(g, s);
-			})();
-		</script>
-
-		<!-- End Matomo Code -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
+		<!-- 100% privacy friendly analytics -->
+		<script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+		<noscript
+			><img
+				src="https://queue.simpleanalyticscdn.com/noscript.gif"
+				alt=""
+				referrerpolicy="no-referrer-when-downgrade"
+		/></noscript>
 	</body>
 </html>
