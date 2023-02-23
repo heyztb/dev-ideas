@@ -34,15 +34,17 @@ export const POST: RequestHandler = async (event) => {
   })
 
   if (error) {
-    throw err(500, 'failed to create user')
+    throw err(500, error)
   }
 
-  return json({
+  const response = {
     status: 200,
     data: {
       success: true,
       user: data.user?.id,
       token: data.session?.access_token
     }
-  })
+  }
+
+  return json(response)
 }
