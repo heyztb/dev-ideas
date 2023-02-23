@@ -1,7 +1,6 @@
 import { error as err, json } from "@sveltejs/kit"
 import type { RequestHandler } from "@sveltejs/kit"
 import { getSupabase } from "@supabase/auth-helpers-sveltekit"
-import { verifyToken } from "$lib/hCaptcha/verify"
 
 export const POST: RequestHandler = async (event) => {
   const { supabaseClient } = await getSupabase(event)
@@ -18,14 +17,8 @@ export const POST: RequestHandler = async (event) => {
 
   const values = await request.formData()
 
-  if (!values.has("hCaptchaToken")) {
+  if (!values.has("captchaToken")) {
     throw err(400, "invalid request: must have hCaptcha Token")
-  }
-
-  const hCaptchaToken: string = values.get('hCaptchaToken')?.toString() ?? ''
-  const validToken = await verifyToken(hCaptchaToken)
-  if (!validToken) {
-    throw err(400, "invalid request: hCaptcha verification failed")
   }
 
   if (!values.has("email")) {
@@ -38,10 +31,14 @@ export const POST: RequestHandler = async (event) => {
 
   const email: string = values.get("email")?.toString() ?? ''
   const password: string = values.get("password")?.toString() ?? ''
+  const captchaToken: string = values.get('captchaToken')?.toString() ?? ''
 
   const { data, error } = await supabaseClient.auth.signUp({
     email,
-    password
+    password,
+    options: {
+      captchaToken,
+    }
   })
 
   if (error) {
