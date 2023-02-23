@@ -13,6 +13,7 @@
 	};
 
 	let error: errorData = {};
+	let captcha: any;
 
 	afterUpdate(() => {
 		setTimeout(() => {
@@ -26,9 +27,9 @@
 		error = {};
 		const formData = new FormData(event.target);
 
-		const email: string = formData.get('email')?.toString() ?? '';
-		const password: string = formData.get('password')?.toString() ?? '';
-		const captchaToken: string = formData.get('response')?.toString() ?? '';
+		const email = formData.get('email')?.toString() ?? '';
+		const password = formData.get('password')?.toString() ?? '';
+		const captchaToken = formData.get('response')?.toString() ?? '';
 
 		const data: signupData = {
 			email,
@@ -47,6 +48,7 @@
 
 		if (!response.ok) {
 			event.target.reset();
+			captcha.reset();
 			const respBody = await response.json();
 			error['message'] = respBody['message'];
 			return;
@@ -83,7 +85,11 @@
 				><span class="font-medium">Uh oh!</span> {error.message}</Helper
 			>
 		{/if}
-		<div class="h-captcha " data-sitekey="f9b8f5aa-31e8-4ac1-807a-4912e25a66be" />
+		<div
+			bind:this={captcha}
+			class="h-captcha"
+			data-sitekey="f9b8f5aa-31e8-4ac1-807a-4912e25a66be"
+		/>
 		<Button type="submit" disabled={error.message} class="my-2">Sign up</Button>
 	</form>
 </div>
