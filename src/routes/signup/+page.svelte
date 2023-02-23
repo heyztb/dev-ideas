@@ -5,6 +5,7 @@
 	type signupData = {
 		email: string;
 		password: string;
+		hCaptchaToken: string;
 	};
 
 	type errorData = {
@@ -27,10 +28,12 @@
 
 		const email: string = formData.get('email')?.toString() ?? '';
 		const password: string = formData.get('password')?.toString() ?? '';
+		const hCaptchaToken: string = formData.get('response')?.toString() ?? '';
 
 		const data: signupData = {
 			email,
-			password
+			password,
+			hCaptchaToken
 		};
 
 		const body = new URLSearchParams(data);
