@@ -11,9 +11,9 @@
 		<NavHamburger on:click={toggle} />
 	</div>
 	<NavUl {hidden}>
-		<NavLi href="#about">About</NavLi>
-		<NavLi href="#features">Features</NavLi>
-		<NavLi href="#pricing">Pricing</NavLi>
-		<NavLi href="#contact">Contact</NavLi>
+		<NavLi href="/#about">About</NavLi>
+		<NavLi href="/#features">Features</NavLi>
+		<NavLi href="/#pricing">Pricing</NavLi>
+		<NavLi href="/#contact">Contact</NavLi>
 	</NavUl>
 </Navbar>

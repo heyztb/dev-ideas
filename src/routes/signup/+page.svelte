@@ -29,7 +29,7 @@
 
 		const email = formData.get('email')?.toString() ?? '';
 		const password = formData.get('password')?.toString() ?? '';
-		const captchaToken = formData.get('response')?.toString() ?? '';
+		const captchaToken = formData.get('h-captcha-response')?.toString() ?? '';
 
 		const data: signupData = {
 			email,
@@ -48,7 +48,7 @@
 
 		if (!response.ok) {
 			event.target.reset();
-			captcha.reset();
+			captcha.current.resetCaptcha();
 			const respBody = await response.json();
 			error['message'] = respBody['message'];
 			return;
@@ -73,13 +73,7 @@
 			placeholder="Enter your email address"
 		/>
 		<Label for="password" color="gray" class="block">Password</Label>
-		<Input
-			id="password"
-			type="password"
-			autocomplete
-			required
-			placeholder="Enter your email address"
-		/>
+		<Input id="password" type="password" autocomplete required placeholder="Enter your password" />
 		{#if error.message}
 			<Helper class="my-2" color="red"
 				><span class="font-medium">Uh oh!</span> {error.message}</Helper

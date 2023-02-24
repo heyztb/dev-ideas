@@ -33,7 +33,7 @@ export const POST: RequestHandler = async (event) => {
   const password: string = values.get("password")?.toString() ?? ''
   const captchaToken: string = values.get('captchaToken')?.toString() ?? ''
 
-  const { data, error } = await supabaseClient.auth.signUp({
+  const { error } = await supabaseClient.auth.signUp({
     email,
     password,
     options: {
@@ -49,8 +49,7 @@ export const POST: RequestHandler = async (event) => {
     status: 200,
     data: {
       success: true,
-      user: data.user?.id,
-      token: data.session?.access_token
+      message: "Awesome, we just sent you a verification email. Check your email to continue."
     }
   }
 
