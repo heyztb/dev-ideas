@@ -14,7 +14,15 @@ const config = {
 	],
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		csp: {
+			directives: {
+				'script-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
+				'frame-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
+				'style-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
+				'connect-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
+			}
+		}
 	}
 };
 
