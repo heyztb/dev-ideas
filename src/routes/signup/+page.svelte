@@ -1,59 +1,12 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { Heading, Label, Input, Helper, Button } from 'flowbite-svelte';
-	import { afterUpdate } from 'svelte';
+	import { beforeUpdate } from 'svelte';
+	import type { ActionData, PageData } from './$types';
 
-	type signupData = {
-		email: string;
-		password: string;
-		captchaToken: string;
-	};
-
-	type errorData = {
-		message?: string;
-	};
-
-	let error: errorData = {};
 	let captcha: any;
 
-	afterUpdate(() => {
-		setTimeout(() => {
-			if (error.message) {
-				error.message = undefined;
-			}
-		}, 3500);
-	});
-
-	const handleSubmit = async (event: any) => {
-		error = {};
-		const formData = new FormData(event.target);
-
-		const email = formData.get('email')?.toString() ?? '';
-		const password = formData.get('password')?.toString() ?? '';
-		const captchaToken = formData.get('h-captcha-response')?.toString() ?? '';
-
-		const data: signupData = {
-			email,
-			password,
-			captchaToken
-		};
-
-		const body = new URLSearchParams(data);
-		const response: Response = await fetch('/signup', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body
-		});
-
-		if (!response.ok) {
-			event.target.reset();
-			captcha.current.resetCaptcha();
-			const respBody = await response.json();
-			error['message'] = respBody['message'];
-			return;
-		}
-	};
+	export let form: ActionData;
 </script>
 
 <svelte:head>
@@ -62,7 +15,7 @@
 
 <div class="flex flex-col justify-center items-center h-screen">
 	<Heading tag="h3" class="text-center">Sign up</Heading>
-	<form on:submit|preventDefault={handleSubmit} method="post" class="w-1/3 space-y-2">
+	<form method="post" action="?/signup" class="w-1/3 space-y-2" use:enhance>
 		<Label for="email" color="gray" class="block">Email</Label>
 		<Input
 			id="email"
@@ -74,9 +27,8 @@
 		/>
 		<Label for="password" color="gray" class="block">Password</Label>
 		<Input id="password" type="password" autocomplete required placeholder="Enter your password" />
-		{#if error.message}
-			<Helper class="my-2" color="red"
-				><span class="font-medium">Uh oh!</span> {error.message}</Helper
+		{#if form?.error}
+			<Helper class="my-2" color="red"><span class="font-medium">Uh oh!</span> {form?.error}</Helper
 			>
 		{/if}
 		<div
@@ -84,6 +36,6 @@
 			class="h-captcha"
 			data-sitekey="f9b8f5aa-31e8-4ac1-807a-4912e25a66be"
 		/>
-		<Button type="submit" disabled={error.message} class="my-2">Sign up</Button>
+		<Button type="submit" class="my-2">Sign up</Button>
 	</form>
 </div>
