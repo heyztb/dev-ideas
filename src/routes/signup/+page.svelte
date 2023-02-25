@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { Heading, Label, Input, Helper, Button } from 'flowbite-svelte';
-	import { beforeUpdate } from 'svelte';
-	import type { ActionData, PageData } from './$types';
+	import type { ActionData } from './$types';
 
 	let captcha: any;
 
@@ -18,6 +17,7 @@
 	<form method="post" action="?/signup" class="w-1/3 space-y-2" use:enhance>
 		<Label for="email" color="gray" class="block">Email</Label>
 		<Input
+			name="email"
 			id="email"
 			type="email"
 			autofocus
@@ -26,9 +26,17 @@
 			placeholder="Enter your email address"
 		/>
 		<Label for="password" color="gray" class="block">Password</Label>
-		<Input id="password" type="password" autocomplete required placeholder="Enter your password" />
+		<Input
+			name="password"
+			id="password"
+			type="password"
+			autocomplete
+			required
+			placeholder="Enter your password"
+		/>
 		{#if form?.error}
-			<Helper class="my-2" color="red"><span class="font-medium">Uh oh!</span> {form?.error}</Helper
+			<Helper class="my-2" color="red"
+				><span class="font-semibold">Uh oh!</span> {form?.error}.</Helper
 			>
 		{/if}
 		<div

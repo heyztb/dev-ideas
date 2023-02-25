@@ -8,7 +8,6 @@ export const actions: Actions = {
 
     const { request } = event
     const formData = await request.formData();
-    console.log(...formData)
 
     const email = formData.get('email')?.toString() ?? ''
     const password = formData.get('password')?.toString() ?? ''
@@ -26,7 +25,7 @@ export const actions: Actions = {
     })
 
     if (error) {
-      return fail(500, { error })
+      return fail(500, { error: error.message })
     }
 
     return {
