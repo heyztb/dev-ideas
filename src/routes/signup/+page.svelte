@@ -45,7 +45,7 @@
 			>
 		{/if}
 		{#if form?.message}
-			<Helper class="my-2" color="green">{form?.message}.</Helper>
+			<Helper class="my-2" color="green">{form?.message}</Helper>
 		{/if}
 		<Button type="submit" class="my-2">Sign up</Button>
 	</form>
