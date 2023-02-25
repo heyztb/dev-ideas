@@ -1,9 +1,20 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { enhance } from '$app/forms';
 	import { Heading, Label, Input, Helper, Button } from 'flowbite-svelte';
+	import { afterUpdate } from 'svelte';
 	import type { ActionData } from './$types';
 
 	export let form: ActionData;
+
+	afterUpdate(() => {
+		if (browser) {
+			if (form?.message) {
+				let hcaptcha: any = window.hcaptcha;
+				hcaptcha.reset();
+			}
+		}
+	});
 </script>
 
 <svelte:head>

@@ -13,6 +13,10 @@ declare global {
 		}
 		// interface Platform {}
 	}
+
+	interface Window {
+		hcaptcha?: unknown;
+	}
 }
 
 export { };
