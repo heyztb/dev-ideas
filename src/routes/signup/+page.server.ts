@@ -10,10 +10,17 @@ export const actions: Actions = {
     const formData = await request.formData();
 
     const email = formData.get('email')?.toString() ?? ''
+
     const password = formData.get('password')?.toString() ?? ''
     if (!(password.length >= 8)) {
       return fail(400, { error: 'password must be at least 8 characters long' })
     }
+
+    const confirmPassword = formData.get('confirm-password')?.toString() ?? ''
+    if (password !== confirmPassword) {
+      return fail(400, { error: 'passwords do not match' })
+    }
+
     const captchaToken = formData.get('h-captcha-response')?.toString() ?? ''
 
     const { error } = await supabaseClient.auth.signUp({

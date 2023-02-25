@@ -16,8 +16,9 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		csp: {
+			mode: "nonce",
 			directives: {
-				'script-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
+				'script-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com', 'https://simpleanalyticscdn.com', 'https://*.simpleanalyticscdn.com'],
 				'frame-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
 				'style-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
 				'connect-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
