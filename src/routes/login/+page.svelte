@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { Heading, Label, Input, Helper, Button } from 'flowbite-svelte';
+	import { Card, Button, Label, Input, Checkbox, Helper } from 'flowbite-svelte';
 	import type { ActionData } from './$types';
 
 	export let form: ActionData;
@@ -10,32 +10,36 @@
 	<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 </svelte:head>
 
-<div class="flex flex-col justify-center items-center h-screen">
-	<Heading tag="h3" class="text-center">Log In</Heading>
-	<form method="post" action="?/login" class="w-1/3 space-y-4" use:enhance>
-		<Label for="email" color="gray" class="block">Email</Label>
-		<Input
-			name="email"
-			id="email"
-			type="email"
-			autofocus
-			required
-			placeholder="Enter your email address"
-		/>
-		<Label for="password" color="gray" class="block">Password</Label>
-		<Input
-			name="password"
-			id="password"
-			type="password"
-			required
-			placeholder="Enter your password"
-		/>
-		<div class="h-captcha" data-sitekey="f9b8f5aa-31e8-4ac1-807a-4912e25a66be" />
-		{#if form?.error}
-			<Helper class="my-2" color="red"
-				><span class="font-semibold">Uh oh!</span> {form?.error}.</Helper
-			>
-		{/if}
-		<Button type="submit" class="my-2">Log in</Button>
-	</form>
+<div class="flex justify-center items-center h-screen">
+	<Card class="md:w-full">
+		<form class="flex flex-col space-y-6" method="post" action="?/login" use:enhance>
+			<h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">Login</h3>
+			<Label class="space-y-2">
+				<span>Email</span>
+				<Input type="email" name="email" placeholder="name@company.com" required />
+			</Label>
+			<Label class="space-y-2">
+				<span>Your password</span>
+				<Input type="password" name="password" placeholder="••••••••" required />
+			</Label>
+			<div class="flex items-start">
+				<Checkbox>Remember me</Checkbox>
+				<a href="/" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
+					>Lost password?</a
+				>
+			</div>
+			<div class="h-captcha" data-sitekey="f9b8f5aa-31e8-4ac1-807a-4912e25a66be" />
+			{#if form?.error}
+				<Helper class="my-2" color="red"
+					><span class="font-semibold">Uh oh!</span> {form?.error}.</Helper
+				>
+			{/if}
+			<Button gradient type="submit" class="w-full">Login</Button>
+			<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+				Not registered? <a href="/signup" class="text-blue-700 hover:underline dark:text-blue-500"
+					>Create account</a
+				>
+			</div	>
+		</form>
+	</Card>
 </div>
