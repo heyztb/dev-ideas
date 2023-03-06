@@ -7,9 +7,9 @@
 			description: 'Select multiple subreddits to share your content to simultaneously'
 		},
 		{
-			title: 'Scheduling',
+			title: 'Metrics Tracking',
 			description:
-				'Users can schedule their posts to be shared on selected subreddits at a particular date and time'
+				'Track post and comment metrics, including upvotes, downvotes, awards, and more'
 		},
 		{
 			title: 'Feedback Collection',
@@ -27,10 +27,10 @@
 		// 		'Subreddit rankings for different niches, enabling users to identify the most active and engaged communities related to their content'
 		// },
 		// {
-		// 	title: 'Metrics Tracking',
+		// 	title: 'Scheduling',
 		// 	description:
-		// 		'Track post and comment metrics, including upvotes, downvotes, awards, and more'
-		// }
+		// 		'Users can schedule their posts to be shared on selected subreddits at a particular date and time'
+		// },
 	];
 </script>
 
