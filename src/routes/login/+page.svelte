@@ -2,8 +2,18 @@
 	import { enhance } from '$app/forms';
 	import { Card, Button, Label, Input, Checkbox, Helper } from 'flowbite-svelte';
 	import type { ActionData } from './$types';
+	import { afterUpdate } from 'svelte';
+	import { browser } from '$app/environment';
 
 	export let form: ActionData;
+	afterUpdate(() => {
+		if (browser) {
+			if (form?.error) {
+				let hcaptcha: any = window.hcaptcha;
+				hcaptcha.reset();
+			}
+		}
+	});
 </script>
 
 <svelte:head>
@@ -23,8 +33,8 @@
 				<Input type="password" name="password" placeholder="••••••••" required />
 			</Label>
 			<div class="flex items-start">
-				<Checkbox>Remember me</Checkbox>
-				<a href="/" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
+				<Checkbox name="remember">Remember me</Checkbox>
+				<a href="/resetpassword" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
 					>Lost password?</a
 				>
 			</div>

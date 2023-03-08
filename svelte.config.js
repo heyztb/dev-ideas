@@ -21,7 +21,7 @@ const config = {
 				'script-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com', 'https://simpleanalyticscdn.com', 'https://*.simpleanalyticscdn.com'],
 				'frame-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
 				'style-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
-				'connect-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
+				'connect-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com', 'https://nsnoqrkywjdrvqgrgyfr.supabase.co'],
 			}
 		}
 	}

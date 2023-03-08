@@ -17,7 +17,7 @@ export const actions: Actions = {
       email,
       password,
       options: {
-        captchaToken
+        captchaToken,
       }
     })
 

@@ -1,11 +1,16 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { enhance } from '$app/forms';
-	import { Card, Button, Label, Input, Checkbox, Helper } from 'flowbite-svelte';
+	import { Card, Button, Label, Input, Helper, Select } from 'flowbite-svelte';
 	import { afterUpdate } from 'svelte';
 	import type { ActionData } from './$types';
 
 	export let form: ActionData;
+	let selected: string;
+	let plans = [
+		{value: "free", name:"Early bird"},
+		{value: "supporter", name:"Supporter"},
+	]
 
 	afterUpdate(() => {
 		if (browser) {
@@ -37,6 +42,10 @@
 				<span>Confirm your password</span>
 				<Input type="password" name="confirm-password" placeholder="••••••••" required />
 			</Label>
+			<Label class="space-y-2">
+				<span>Select your plan</span>
+				<Select bind:value={selected} items={plans} name="plan"/>
+			</Label>
 			<div class="h-captcha" data-sitekey="f9b8f5aa-31e8-4ac1-807a-4912e25a66be" />
 			{#if form?.error}
 				<Helper class="my-2" color="red"
@@ -47,6 +56,11 @@
 				<Helper class="my-2" color="green">{form?.message}</Helper>
 			{/if}
 			<Button gradient type="submit" class="w-full">Sign up</Button>
+			<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+				Already have an account? <a href="/login" class="text-blue-700 hover:underline dark:text-blue-500"
+					>Log in</a
+				>
+			</div>
 		</form>
 	</Card>
 </div>
