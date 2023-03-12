@@ -45,7 +45,7 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": ">=16.14"
+		"node": "^16.14"
 	},
 	"dependencies": {
 		"node-cache": "^5.1.2",
