@@ -46,4 +46,5 @@
 		</Card>	
 	{/each}
 	</div>
+	<P class="text-xl font-semibold">...and more as we grow!</P>
 </div>

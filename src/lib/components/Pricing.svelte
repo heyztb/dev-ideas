@@ -105,7 +105,7 @@
 					>
 				</li>
 			</ul>
-			<Button gradient href="/signup" class="w-full">Sign up</Button>
+			<Button gradient href="/dashboard" class="w-full">Continue</Button>
 		</Card>
 		<Card padding="xl" class="m-4">
 			<h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">Supporter</h5>
@@ -205,7 +205,7 @@
 					>
 				</li>
 			</ul>
-			<Button gradient href="/signup" class="w-full">Sign up</Button>
+			<Button gradient href="https://buy.stripe.com/aEU5myaWS1sigNybII" class="w-full">Buy now</Button>
 		</Card>
 	</div>
 </div>

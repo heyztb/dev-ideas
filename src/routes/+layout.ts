@@ -1,7 +1,8 @@
-import type { LayoutLoad } from './$types'
-import { getSupabase } from '@supabase/auth-helpers-sveltekit'
+import type { LayoutLoad } from "./$types";
 
-export const load: LayoutLoad = async (event) => {
-  const { session } = await getSupabase(event)
-  return { session }
+export const load: LayoutLoad = async ( { data }) => {
+	return {
+		authed: data.authed,
+		account: data.account,
+	}
 }

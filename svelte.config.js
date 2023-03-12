@@ -18,10 +18,10 @@ const config = {
 		csp: {
 			mode: "nonce",
 			directives: {
-				'script-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com', 'https://simpleanalyticscdn.com', 'https://*.simpleanalyticscdn.com'],
-				'frame-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
-				'style-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com'],
-				'connect-src': ['self', 'https://hcaptcha.com', 'https://*.hcaptcha.com', 'https://nsnoqrkywjdrvqgrgyfr.supabase.co'],
+				'script-src': ['self','https://simpleanalyticscdn.com', 'https://*.simpleanalyticscdn.com'],
+				'frame-src': ['self'],
+				'style-src': ['self'],
+				'connect-src': ['self'],
 			}
 		}
 	}

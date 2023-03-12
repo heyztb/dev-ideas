@@ -10,5 +10,6 @@
 	<P class="text-center mb-6 text-lg lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
 		>Grow your brand by leveraging automation to share to multiple subreddits, simultaneously.</P
 	>
-	<Button gradient href='/signup'>Get started for free</Button>
+	<Button gradient href='/login'>Get started for free</Button>
+	<P class="text-center text-xs mt-1" color="text-gray-500">Cancel anytime</P>
 </div>
