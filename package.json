@@ -1,6 +1,6 @@
 {
 	"name": "rauto",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -20,7 +20,6 @@
 		"@sveltejs/kit": "^1.5.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
-		"argon2": "^0.30.3",
 		"autoprefixer": "^10.4.7",
 		"classnames": "^2.3.2",
 		"eslint": "^8.28.0",
@@ -32,8 +31,6 @@
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
-		"snoowrap": "^1.23.0",
-		"supabase": "^1.38.6",
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
 		"svelte-preprocess": "^4.10.7",
@@ -45,11 +42,11 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": "^16.14"
+		"node": ">=16.14"
 	},
 	"dependencies": {
 		"node-cache": "^5.1.2",
-		"request": "^2.88.2",
+		"snoowrap": "^1.23.0",
 		"sqlite": "^4.1.2",
 		"sqlite3": "^5.1.4",
 		"threads": "^1.7.0"
