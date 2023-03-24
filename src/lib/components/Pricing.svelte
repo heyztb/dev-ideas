@@ -3,7 +3,7 @@
 </script>
 
 <div id="pricing" class="flex flex-col justify-center items-center my-32 h-1/3">
-	<Heading tag="h1" class="text-center mb-4">Pricing</Heading>
+	<Heading tag="h1" class="text-center mb-4">Subscribe</Heading>
 	<div class="grid grid-flow-row grid-cols-1 md:grid-cols-2">
 		<Card padding="xl" class="m-4">
 			<h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">Early bird</h5>

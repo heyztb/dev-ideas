@@ -6,14 +6,18 @@ CREATE TABLE accounts (
   email TEXT,
   username TEXT NOT NULL,
   image TEXT NOT NULL,
-  plan TEXT NOT NULL,
-  paid INTEGER NOT NULL DEFAULT 0,
+  plan TEXT NOT NULL DEFAULT 'free',
+  status TEXT NOT NULL DEFAULT 'active',
   onboard INTEGER NOT NULL DEFAULT 0,
-  created_at INTEGER(4) DEFAULT (strftime('%s', 'now')),
+  email_verified INTEGER NOT NULL DEFAULT 0,
+  created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+  updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
   UNIQUE(username),
+  UNIQUE(email),
   CONSTRAINT accounts_ck_plan CHECK (plan IN ("free", "premium")),
-  CONSTRAINT accounts_ck_paid CHECK (paid IN (0, 1)),
-  CONSTRAINT accounts_ck_onboard CHECK (onboard IN (0, 1))
+  CONSTRAINT accounts_ck_status CHECK (status IN ('trialing', 'active', 'past_due', 'canceled', 'unpaid')),
+  CONSTRAINT accounts_ck_onboard CHECK (onboard IN (0, 1)),
+  CONSTRAINT accounts_ck_email_verified CHECK (email_verified IN (0, 1))
 );
 
 CREATE TABLE posts (
@@ -25,7 +29,7 @@ CREATE TABLE posts (
   body TEXT,
   num_votes INTEGER NOT NULL DEFAULT 0,
   num_comments INTEGER NOT NULL DEFAULT 0,
-  created_at INTEGER(4) DEFAULT (strftime('%s', 'now')),
+  created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
   CONSTRAINT posts_fk_user_id FOREIGN KEY (user_id) REFERENCES accounts (id) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT posts_ck_kind CHECK (kind IN ("link", "self"))
 );
@@ -36,34 +40,50 @@ CREATE TABLE comments (
   username TEXT NOT NULL,
   body TEXT NOT NULL,
   num_votes INTEGER NOT NULL DEFAULT 0,
-  created_at INTEGER(4) DEFAULT (strftime('%s', 'now')),
+  created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
   CONSTRAINT comments_fk_post_id FOREIGN KEY (post_id) REFERENCES posts (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE stats (
   id INTEGER PRIMARY KEY,
-  user_id INTEGER,
+  user_id INTEGER NOT NULL,
   posts_made INTEGER DEFAULT 0,
   upvotes_received INTEGER DEFAULT 0,
-  created_at INTEGER(4) DEFAULT (strftime('%s', 'now')),
+  created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
   CONSTRAINT stats_fk_user_id FOREIGN KEY (user_id) REFERENCES accounts (id) ON UPDATE CASCADE ON DELETE CASCADE,
   UNIQUE(user_id)
 );
 
-CREATE INDEX Accounts_idx_username ON accounts (username);
-CREATE INDEX Accounts_idx_email ON accounts (email);
+CREATE INDEX accounts_idx_username ON accounts (username);
+CREATE INDEX accounts_idx_email ON accounts (email);
+
+CREATE TRIGGER tg_accounts_updated_at
+  AFTER UPDATE
+  ON accounts
+  FOR EACH ROW
+  WHEN NEW.updated_at = OLD.updated_at
+BEGIN
+  UPDATE accounts SET updated_at = strftime('%s', 'now') WHERE id = OLD.id;
+END;
+
+CREATE TRIGGER tg_accounts_create_stats
+  AFTER INSERT
+  ON accounts
+BEGIN
+  INSERT INTO stats(user_id) VALUES (NEW.id);
+END;
 
 --------------------------------------------------------------------------------
 -- Down
 --------------------------------------------------------------------------------
-DROP INDEX Accounts_idx_email;
+DROP INDEX accounts_idx_email;
 
-DROP INDEX Accounts_idx_username;
+DROP INDEX accounts_idx_username;
 
-DROP TABLE Stats;
+DROP TABLE stats;
 
-DROP TABLE Comments;
+DROP TABLE comments;
 
-DROP TABLE Posts;
+DROP TABLE posts;
 
-DROP TABLE Accounts;
+DROP TABLE accounts;

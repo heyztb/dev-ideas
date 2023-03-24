@@ -1,8 +1,9 @@
 import { fail, redirect } from "@sveltejs/kit";
 import type { PageServerLoad, Actions } from "./$types";
-import { db } from "$lib/server/db";
+import { db, getUserByEmail } from "$lib/server/db";
 import { cache } from "$lib/server/cache";
 import type { Account } from "$lib/models/account";
+import { sendVerificationEmail } from "$lib/server/email";
 
 export const load: PageServerLoad = async ({ parent }) => {
 	const { authed } = await parent()
@@ -22,12 +23,31 @@ export const actions: Actions = {
 		const formData = await request.formData()
 		const email = formData.get('email') as string
 
-		const database = await db()
-		await database.run('UPDATE accounts SET email = ? WHERE id = ?', email, account.id)
+		let new_email: boolean = true
+		if (email === account.email) {
+			new_email = false
+		}
 
-		account.email = email
-		cache.set(`account_${refresh_token}`, account)
+		if (new_email) {
+			account.email = email
+			account.email_verified = false
 
-		return { message: 'Updated successfully', error: '' }
+			const database = await db()
+			try {
+				await database.run('UPDATE accounts SET email = ?, email_verified = ? WHERE id = ?', account.email, account.email_verified, account.id)
+			} catch (error) {
+				console.error(error)
+				return fail(400, { error })
+			}
+
+			cache.set(`account_${refresh_token}`, account)
+		}
+
+		const { error } = await sendVerificationEmail(account)
+		if (error) {
+			return { error }
+		}
+
+		return { message: 'Email verification sent, please check your inbox', error: '' }
 	}
 }

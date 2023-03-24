@@ -1,7 +1,7 @@
 import { REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET } from "$env/static/private";
 import type { Account } from "$lib/models/account";
 import { userAgent } from "$lib/reddit";
-import { db } from "$lib/server/db";
+import { getUserByUsername, insertUser } from "$lib/server/db";
 import { cache } from "$lib/server/cache";
 import Snoowrap from "snoowrap";
 import type { LayoutServerLoad } from "./$types";
@@ -23,13 +23,20 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 			refreshToken: refresh_token
 		})
 
- 		const userPromise = r.getMe().then(async (redditUser) => {
-			const database = await db()
+		const userPromise = r.getMe().then(async (redditUser) => {
 			try {
-				let account = await database.get<Account>('SELECT * FROM accounts WHERE username = ?', redditUser.name)
+				let account = await getUserByUsername(redditUser.name)
 				if (!account) {
-					await database.run('INSERT INTO accounts(username, image, plan, paid) VALUES (?,?,?,?)', redditUser.name, redditUser.icon_img, "free", false)
-					account = await database.get<Account>('SELECT * FROM accounts WHERE username = ?', redditUser.name) as Account
+					await insertUser({
+						username: redditUser.name,
+						email: '',
+						image: redditUser.icon_img,
+						plan: 'free',
+						status: 'active',
+						onboard: false,
+						email_verified: false
+					})
+					account = await getUserByUsername(redditUser.name) as Account
 				}
 				cache.set(`account_${refresh_token}`, account)
 				return { account }

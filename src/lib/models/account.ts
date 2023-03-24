@@ -1,10 +1,12 @@
 export type Account = {
-	id: number
-	email: string,
+	id?: number
+	email: string
 	username: string
-	image: string,
+	image: string
 	plan: string
-	paid: boolean
+	status: string
 	onboard: boolean
-	created_at: number
+	email_verified: boolean
+	created_at?: number
+	updated_at?: number
 }
