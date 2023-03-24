@@ -14,7 +14,16 @@ const config = {
 	],
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		csp: {
+			mode: "nonce",
+			directives: {
+				'script-src': ['self','https://simpleanalyticscdn.com', 'https://*.simpleanalyticscdn.com'],
+				'frame-src': ['self'],
+				'style-src': ['self'],
+				'connect-src': ['self'],
+			}
+		}
 	}
 };
 
